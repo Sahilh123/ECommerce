@@ -24,9 +24,25 @@ export class AllProductsComponent implements OnInit, OnDestroy {
         this.filterProducts(category);
       }
     );
+    this.subscription.add(
+      this.productService.brandFilter$.subscribe((brand: string) => {
+        this.filterProductsByBrand(brand);
+      })
+    );
 
     // Initially, show all products
     this.filterProducts('all');
+    this.filterProductsByBrand('all');
+  }
+
+  filterProductsByBrand(brand: string) {
+    if (brand === 'all') {
+      this.filteredProducts = this.filteredProducts; // No brand filter, use current filtered products
+    } else {
+      this.filteredProducts = this.filteredProducts.filter(
+        (product) => product.brand === brand
+      );
+    }
   }
 
   filterProducts(category: string) {
@@ -37,6 +53,13 @@ export class AllProductsComponent implements OnInit, OnDestroy {
         (product) => product.category === category
       );
     }
+
+    const brandFilter = this.productService.getCurrentBrandFilter();
+    this.filterProductsByBrand(brandFilter);
+  }
+
+  setBrandFilter(brand: string) {
+    this.productService.setBrandFilter(brand);
   }
 
   ngOnDestroy() {

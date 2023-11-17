@@ -18,7 +18,7 @@
 
   <div class="filter-option">
     <label for="brand">Brand:</label>
-    <select id="brand" name="brand">
+    <select id="brand" name="brand" (change)="selectBrand($event)">
       <option value="all">All Brands</option>
       <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
     </select>

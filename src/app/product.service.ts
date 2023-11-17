@@ -11,10 +11,15 @@ export class ProductService {
   private apiUrl = 'https://dummyjson.com/products';
   private cartItemsIds: number[] = [];
   private categoryFilter: string = 'all';
+  private brandFilter: string = 'all';
   private pastOrdersIds: number[] = [];
 
   private categoryFilterSubject = new BehaviorSubject<string>('all');
   categoryFilter$ = this.categoryFilterSubject.asObservable();
+
+  private brandFilterSubject = new BehaviorSubject<string>('all');
+  brandFilter$ = this.brandFilterSubject.asObservable();
+
   private cartItemsSubject = new BehaviorSubject<Product[]>([]);
   cartItems$ = this.cartItemsSubject.asObservable();
 
@@ -40,6 +45,14 @@ export class ProductService {
 
   setCategoryFilter(category: string) {
     this.categoryFilterSubject.next(category);
+  }
+
+  setBrandFilter(brand: string) {
+    this.brandFilterSubject.next(brand);
+  }
+
+  getCurrentBrandFilter(): string {
+    return this.brandFilter;
   }
 
   addToCart(productId: number) {

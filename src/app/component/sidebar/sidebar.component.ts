@@ -33,4 +33,10 @@ export class SidebarComponent {
     const category = target.value;
     this.productService.setCategoryFilter(category);
   }
+
+  selectBrand(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const brand = target.value;
+    this.productService.setBrandFilter(brand);
+  }
 }

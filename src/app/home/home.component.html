@@ -1,0 +1,17 @@
+<div class="home-container">
+  <app-sidebar [products]="allProducts"></app-sidebar>
+
+  <div class="product-section">
+    <h2>Products</h2>
+
+    <ng-container
+      *ngIf="allProducts && allProducts.length > 0; else loadingProducts"
+    >
+      <app-all-products [products]="allProducts"></app-all-products>
+    </ng-container>
+
+    <ng-template #loadingProducts>
+      <p>Loading products...</p>
+    </ng-template>
+  </div>
+</div>

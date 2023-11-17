@@ -1,0 +1,54 @@
+.navbar {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar img {
+  margin-right: 5px;
+}
+
+.navbar-middle input {
+  width: 100%;
+  padding: 5px;
+}
+
+/* Styles for the search bar */
+/* Styles for the search bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 300px; /* Adjust the width as needed */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px; /* Add spacing between input and button */
+}
+
+.search-button {
+  background-color: #007bff; /* Customize button background color */
+  color: #fff; /* Customize button text color */
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-container {
+  display: flex; /* Display the content side by side */
+  align-items: center;
+}
+
+.nav-item {
+  margin-right: 20px; /* Add some spacing between items */
+}

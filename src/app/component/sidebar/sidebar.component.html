@@ -1,0 +1,26 @@
+<div class="filter-section">
+  <h2>Filters</h2>
+
+  <div class="filter-option">
+    <label for="price-range">Price Range:</label>
+    <input type="range" id="price-range" name="price-range" min="0" max="100" />
+  </div>
+
+  <div class="filter-option">
+    <label for="category">Category:</label>
+    <select id="category" name="category" (change)="selectCategory($event)">
+      <option value="all">All Categories</option>
+      <option *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </option>
+    </select>
+  </div>
+
+  <div class="filter-option">
+    <label for="brand">Brand:</label>
+    <select id="brand" name="brand">
+      <option value="all">All Brands</option>
+      <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+    </select>
+  </div>
+</div>

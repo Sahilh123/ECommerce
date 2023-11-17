@@ -1,0 +1,11 @@
+.home-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-section {
+  width: 100%;
+  flex-grow: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,41 @@
+<nav class="navbar">
+  <div class="navbar-left">
+    <i class="fas fa-gift"></i>
+    <a href="/">dailyCommerce</a>
+  </div>
+  <div class="navbar-middle">
+    <div class="search-bar">
+      <input type="text" placeholder="Search" class="search-input" />
+      <button class="search-button">Search</button>
+    </div>
+  </div>
+  <div class="navbar-right">
+    <div class="nav-container">
+      <div class="nav-item">
+        <a href="/past-orders">
+          <i class="fas fa-history"></i>
+          Past Orders
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="/cart">
+          <i class="fas fa-shopping-cart"></i>
+          Cart
+        </a>
+      </div>
+      <div class="nav-item" *ngIf="isAuthenticated">
+        <a href="/login">
+          <i class="fas fa-sign-in-alt"></i>
+          Log Out
+        </a>
+      </div>
+      <div class="nav-item" *ngIf="!isAuthenticated">
+        <a href="/login">
+          <i class="fas fa-sign-in-alt"></i>
+
+          Log In
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

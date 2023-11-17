@@ -1,0 +1,18 @@
+<div class="products-container">
+  <div class="product" *ngFor="let product of filteredProducts">
+    <div class="thumbnail">
+      <img [src]="product.thumbnail" alt="Product Thumbnail" />
+    </div>
+    <div class="product-details">
+      <h3>{{ product.title }}</h3>
+      <p>{{ product.description }}</p>
+      <p>Price : ${{ product.price }}</p>
+    </div>
+    <div class="product-buttons">
+      <button (click)="addToCart(product)">Add To Cart</button>
+      <button class="view-button" (click)="viewProductDetails(product)">
+        View Details
+      </button>
+    </div>
+  </div>
+</div>

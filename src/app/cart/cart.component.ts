@@ -17,10 +17,10 @@ export class CartComponent implements OnInit {
     this.productService.getCartItems().subscribe(
       (cartProducts: Product[]) => {
         this.cartItems = cartProducts.map((item) => {
-          item.quantity = 1; // Set the quantity to 1 for each item loaded from local storage
+          item.quantity = 1;
           return item;
         });
-        this.calculateTotalCost(); // Calculate the total cost after loading cart items
+        this.calculateTotalCost();
       },
       (error) => {
         console.error('Error fetching cart items: ', error);
@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
 
   increaseQuantity(item: Product) {
     item.quantity = item.quantity ? item.quantity + 1 : 1;
-    this.calculateTotalCost(); // Recalculate total cost after increasing quantity
+    this.calculateTotalCost();
   }
 
   decreaseQuantity(item: Product) {
@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
       if (item.quantity === 0) {
         this.removeItemFromCart(item);
       }
-      this.calculateTotalCost(); // Recalculate total cost after decreasing quantity
+      this.calculateTotalCost();
     }
   }
 
@@ -47,24 +47,31 @@ export class CartComponent implements OnInit {
     const index = this.cartItems.findIndex((p) => p.id === item.id);
     if (index !== -1) {
       this.cartItems.splice(index, 1);
-      this.calculateTotalCost(); // Recalculate total cost after removing item from cart
+      this.calculateTotalCost();
     }
   }
 
   checkout() {
+    const currentCart = localStorage.getItem('cartItemsIds');
+    if (currentCart !== null) {
+      const cartData = JSON.parse(currentCart);
+      localStorage.setItem('pastOrders', JSON.stringify(cartData));
+    }
+
     console.log('Checkout Successful! Thank you for your purchase.');
     window.alert('Your order has been placed. Thank you for your purchase!');
 
     this.cartItems = [];
     this.calculateTotalCost();
+    localStorage.removeItem('cartItemsIds');
   }
 
   getTypesOfItemsCount(): number {
     const uniqueItemIds = new Set<number>();
     this.cartItems.forEach((item) => {
-      uniqueItemIds.add(item.id); // Add unique item IDs to the set
+      uniqueItemIds.add(item.id);
     });
-    return uniqueItemIds.size; // Return the count of unique item IDs
+    return uniqueItemIds.size;
   }
 
   calculateTotalCost() {

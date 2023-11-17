@@ -11,6 +11,7 @@ export class ProductService {
   private apiUrl = 'https://dummyjson.com/products';
   private cartItemsIds: number[] = [];
   private categoryFilter: string = 'all';
+  private pastOrdersIds: number[] = [];
 
   private categoryFilterSubject = new BehaviorSubject<string>('all');
   categoryFilter$ = this.categoryFilterSubject.asObservable();
@@ -21,6 +22,10 @@ export class ProductService {
     const storedIds = localStorage.getItem('cartItemsIds');
     if (storedIds) {
       this.cartItemsIds = JSON.parse(storedIds);
+    }
+    const storedIds2 = localStorage.getItem('pastOrders');
+    if (storedIds2) {
+      this.pastOrdersIds = JSON.parse(storedIds2);
     }
   }
 
@@ -54,6 +59,21 @@ export class ProductService {
         if (Array.isArray(products)) {
           return products.filter((product) =>
             this.cartItemsIds.includes(product.id)
+          );
+        } else {
+          return [];
+        }
+      })
+    );
+  }
+
+  getPastOrders(): Observable<Product[]> {
+    return this.getProducts().pipe(
+      map((response) => {
+        const products = response.products;
+        if (Array.isArray(products)) {
+          return products.filter((product) =>
+            this.pastOrdersIds.includes(product.id)
           );
         } else {
           return [];

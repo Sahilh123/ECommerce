@@ -1,0 +1,47 @@
+/* CSS for order items */
+.order-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.order-item:hover {
+  transform: translateY(-5px);
+}
+
+.order-item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.order-details {
+  flex: 1;
+}
+
+.order-details h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.order-details .description {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #888;
+}
+
+.order-details .price {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+}

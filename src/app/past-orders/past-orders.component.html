@@ -1,1 +1,10 @@
-<p>past-orders works!</p>
+<div class="order-list">
+  <div class="order-item" *ngFor="let order of pastOrders">
+    <img [src]="order.thumbnail" alt="Product Thumbnail" />
+    <div class="order-details">
+      <h3>{{ order.title }}</h3>
+      <p class="description">{{ order.description }}</p>
+      <p class="price">Price: ${{ order.price }}</p>
+    </div>
+  </div>
+</div>

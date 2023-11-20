@@ -1,0 +1,60 @@
+.input-container {
+  margin-bottom: 20px;
+}
+
+.input-container label {
+  margin-right: 10px;
+}
+
+.input-container input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 60px;
+}
+
+.generate-button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.generate-button:hover {
+  background-color: #0056b3;
+}
+
+.grid-container {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.grid-row {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.grid-cell {
+  border: 1px solid #ccc;
+  padding: 8px;
+  transition: background-color 0.3s ease;
+  white-space: normal;
+  min-width: 100px;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.cell-content {
+  max-height: 3em; /* Set the maximum height for the content */
+  overflow-y: auto; /* Enable vertical scrolling */
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.grid-cell:hover {
+  background-color: #f0f0f0;
+}

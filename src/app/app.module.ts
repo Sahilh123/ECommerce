@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AllProductsComponent } from './component/all-products/all-products.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
+import { GridInputComponent } from './grid-input/grid-input.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ProductDetailsComponent } from './component/product-details/product-det
     AllProductsComponent,
     SidebarComponent,
     ProductDetailsComponent,
+    GridInputComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

@@ -1,4 +1,6 @@
+import { ProductService } from 'src/app/product.service';
 import { Component } from '@angular/core';
+import { Product } from '../product.model';
 
 @Component({
   selector: 'app-navbar',
@@ -6,7 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  isAuthenticated: boolean = true; // Set this based on user authentication status
+  isAuthenticated: boolean = true;
+  searchQuery: string = '';
 
-  // Add other component logic as needed
+  constructor(private productService: ProductService) {}
+
+  searchProducts() {
+    console.log('Search Query:', this.searchQuery);
+    this.productService.setSearchQuery(this.searchQuery);
+  }
 }

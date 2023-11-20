@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./grid-input.component.css'],
 })
 export class GridInputComponent {
-  rowCount: number = 3;
-  columnCount: number = 3;
+  rowCount: number = 0;
+  columnCount: number = 0;
   rows: number[] = [];
   columns: number[] = [];
   gridData: any = {};

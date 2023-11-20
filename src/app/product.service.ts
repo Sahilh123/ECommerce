@@ -23,6 +23,10 @@ export class ProductService {
   private cartItemsSubject = new BehaviorSubject<Product[]>([]);
   cartItems$ = this.cartItemsSubject.asObservable();
 
+  // for search
+  private searchQuerySubject = new BehaviorSubject<string>('');
+  searchQuery$ = this.searchQuerySubject.asObservable();
+
   constructor(private http: HttpClient) {
     const storedIds = localStorage.getItem('cartItemsIds');
     if (storedIds) {
@@ -41,6 +45,10 @@ export class ProductService {
         return of({ products: [], total: 0, skip: 0, limit: 0 });
       })
     );
+  }
+
+  setSearchQuery(query: string) {
+    this.searchQuerySubject.next(query);
   }
 
   setCategoryFilter(category: string) {
@@ -87,6 +95,21 @@ export class ProductService {
         if (Array.isArray(products)) {
           return products.filter((product) =>
             this.pastOrdersIds.includes(product.id)
+          );
+        } else {
+          return [];
+        }
+      })
+    );
+  }
+
+  searchProducts(query: string): Observable<Product[]> {
+    return this.getProducts().pipe(
+      map((response) => {
+        const products = response.products;
+        if (Array.isArray(products)) {
+          return products.filter((product) =>
+            product.title.toLowerCase().includes(query.toLowerCase())
           );
         } else {
           return [];

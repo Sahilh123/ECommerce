@@ -52,3 +52,6 @@
 .nav-item {
   margin-right: 20px; /* Add some spacing between items */
 }
+.highlight {
+  background-color: yellow;
+}

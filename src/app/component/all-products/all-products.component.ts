@@ -13,6 +13,7 @@ export class AllProductsComponent implements OnInit, OnDestroy {
   @Input() products: Product[] = [];
   filteredProducts: Product[] = [];
   private subscription: Subscription = new Subscription();
+  searchQuery: string = '';
 
   constructor(private productService: ProductService, private router: Router) {}
 
@@ -29,6 +30,18 @@ export class AllProductsComponent implements OnInit, OnDestroy {
         this.filterProductsByBrand(brand);
       })
     );
+
+    // Subscription for search query
+
+    this.subscription.add(
+      this.productService.searchQuery$.subscribe((query: string) => {
+        this.searchQuery = query;
+        this.searchProducts(); // Trigger search when query changes
+      })
+    );
+
+    // Trigger initial search
+    this.searchProducts();
 
     // Initially, show all products
     this.filterProducts('all');
@@ -73,5 +86,19 @@ export class AllProductsComponent implements OnInit, OnDestroy {
 
   viewProductDetails(product: Product) {
     this.router.navigate(['/product-details'], { state: { product } }); // Updated the route
+  }
+
+  searchProducts() {
+    console.log('Search Query:', this.searchQuery); // Track the search query
+
+    this.productService.searchProducts(this.searchQuery).subscribe(
+      (products: Product[]) => {
+        console.log('Received Products:', products); // Log the received products
+        this.filteredProducts = products;
+      },
+      (error) => {
+        console.error('Error fetching products:', error); // Handle error if needed
+      }
+    );
   }
 }

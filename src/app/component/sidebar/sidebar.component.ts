@@ -16,7 +16,7 @@ export class SidebarComponent {
     const categories = Array.from(
       new Set(this.products.map((product) => product.category))
     );
-    console.log('Categories:', categories);
+    // console.log('Categories:', categories);
     return categories;
   }
 
@@ -24,7 +24,7 @@ export class SidebarComponent {
     const brands = Array.from(
       new Set(this.products.map((product) => product.brand))
     );
-    console.log('Brands:', brands);
+    // console.log('Brands:', brands);
     return brands;
   }
 

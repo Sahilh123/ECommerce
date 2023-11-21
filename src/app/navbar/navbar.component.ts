@@ -13,6 +13,7 @@ export class NavbarComponent {
 
   constructor(private productService: ProductService) {}
 
+  // fucntion for the search query
   searchProducts() {
     console.log('Search Query:', this.searchQuery);
     this.productService.setSearchQuery(this.searchQuery);

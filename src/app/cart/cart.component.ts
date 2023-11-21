@@ -13,6 +13,8 @@ export class CartComponent implements OnInit {
 
   constructor(private productService: ProductService) {}
 
+  // filtering the products from all products basis on the cartItemsIds using the function getCartItems
+
   ngOnInit() {
     this.productService.getCartItems().subscribe(
       (cartProducts: Product[]) => {
@@ -28,11 +30,13 @@ export class CartComponent implements OnInit {
     );
   }
 
+  // function to increase the current quantity
   increaseQuantity(item: Product) {
     item.quantity = item.quantity ? item.quantity + 1 : 1;
     this.calculateTotalCost();
   }
 
+  // function to decrease quantity of current item
   decreaseQuantity(item: Product) {
     if (item.quantity && item.quantity > 0) {
       item.quantity -= 1;
@@ -43,6 +47,7 @@ export class CartComponent implements OnInit {
     }
   }
 
+  // function to remove item from cart if remove button is clicked
   removeItemFromCart(item: Product) {
     const index = this.cartItems.findIndex((p) => p.id === item.id);
     if (index !== -1) {
@@ -51,6 +56,7 @@ export class CartComponent implements OnInit {
     }
   }
 
+  // function to buy the current items in cart and storing it in pastOrders
   checkout() {
     const currentCart = localStorage.getItem('cartItemsIds');
     if (currentCart !== null) {
@@ -66,6 +72,7 @@ export class CartComponent implements OnInit {
     localStorage.removeItem('cartItemsIds');
   }
 
+  // function to get the types of items present
   getTypesOfItemsCount(): number {
     const uniqueItemIds = new Set<number>();
     this.cartItems.forEach((item) => {
@@ -74,6 +81,7 @@ export class CartComponent implements OnInit {
     return uniqueItemIds.size;
   }
 
+  // calculating the total cost of the current cart items
   calculateTotalCost() {
     this.totalCost = this.cartItems.reduce((total, item) => {
       return total + item.price * (item.quantity || 1);

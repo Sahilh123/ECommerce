@@ -12,6 +12,8 @@ export class PastOrdersComponent implements OnInit {
 
   constructor(private productService: ProductService) {}
 
+  //fetchning all the past orders using getPastOrders
+
   ngOnInit() {
     this.productService.getPastOrders().subscribe(
       (cartProducts: Product[]) => {

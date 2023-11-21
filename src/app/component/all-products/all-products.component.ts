@@ -20,18 +20,21 @@ export class AllProductsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log('Total products:', this.products.length); // Check the length of products array
 
+    // subscription for the category filter
     this.subscription = this.productService.categoryFilter$.subscribe(
       (category: string) => {
         this.filterProducts(category);
       }
     );
+
+    // subscription for the brand filter
     this.subscription.add(
       this.productService.brandFilter$.subscribe((brand: string) => {
         this.filterProductsByBrand(brand);
       })
     );
 
-    // Subscription for search query
+    // Subscription for search query filter
 
     this.subscription.add(
       this.productService.searchQuery$.subscribe((query: string) => {
@@ -48,6 +51,7 @@ export class AllProductsComponent implements OnInit, OnDestroy {
     this.filterProductsByBrand('all');
   }
 
+  // function to filter products by brand
   filterProductsByBrand(brand: string) {
     if (brand === 'all') {
       this.filteredProducts = this.filteredProducts; // No brand filter, use current filtered products
@@ -58,6 +62,7 @@ export class AllProductsComponent implements OnInit, OnDestroy {
     }
   }
 
+  // filter the produucts on the basis of category
   filterProducts(category: string) {
     if (category === 'all') {
       this.filteredProducts = this.products; // Show all products if 'All Categories' selected
@@ -71,6 +76,7 @@ export class AllProductsComponent implements OnInit, OnDestroy {
     this.filterProductsByBrand(brandFilter);
   }
 
+  // to interact with service setBrandFilter
   setBrandFilter(brand: string) {
     this.productService.setBrandFilter(brand);
   }
@@ -79,15 +85,18 @@ export class AllProductsComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  // function to add an item to cart
   addToCart(item: Product) {
     this.productService.addToCart(item.id);
     console.log(this.productService.getCartItems());
   }
 
+  // function to see the details of a product
   viewProductDetails(product: Product) {
     this.router.navigate(['/product-details'], { state: { product } }); // Updated the route
   }
 
+  // function to filter the products on the search
   searchProducts() {
     console.log('Search Query:', this.searchQuery); // Track the search query
 

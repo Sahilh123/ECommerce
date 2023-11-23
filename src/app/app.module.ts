@@ -15,6 +15,7 @@ import { AllProductsComponent } from './component/all-products/all-products.comp
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
 import { GridInputComponent } from './grid-input/grid-input.component';
+import { CellComponent } from './component/cell/cell.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { GridInputComponent } from './grid-input/grid-input.component';
     SidebarComponent,
     ProductDetailsComponent,
     GridInputComponent,
+    CellComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

@@ -17,7 +17,7 @@
       contenteditable="true"
       class="grid-cell"
     >
-      {{ gridData[row]?.[column] || '' }}
+      <app-cell [gridData]="gridData" [row]="row" [column]="column"></app-cell>
     </div>
   </div>
 </div>
